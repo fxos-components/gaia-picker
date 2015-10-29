@@ -494,8 +494,9 @@ proto.updateDayPickerValue = function() {
   var picker = this.els.pickers.day;
   var index = this.dayValueToIndex(value);
   var animate = picker.value !== picker.items[index];
+
   picker.select(index, { animate: animate });
-  debug('day picker index updated: %s', index);
+  debug('day picker index updated: %s', index, animate);
 };
 
 /**

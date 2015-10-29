@@ -61,15 +61,11 @@ proto.createdCallback = function() {
     items: this.querySelectorAll('li')
   };
 
-  this.setup = this.setup.bind(this);
   this.shadowStyleHack();
   this.itemsFromChildren();
   this.addListeners();
 
   this.circular = this.hasAttribute('circular');
-
-  // Setup async to allow users chance select
-  setTimeout(this.setup.bind(this));
   this.created = true;
 };
 
@@ -83,7 +79,6 @@ proto.addListeners = function() {
 
 proto.attachedCallback = function() {
   debug('attached');
-  this.setup();
 };
 
 proto.detachedCallback = function() {
@@ -198,20 +193,11 @@ proto.setup = function() {
   // We can't setup without DOM context
   if (!inDOM(this)) { return debug('not in dom'); }
 
-  // Defer setup until document has loaded
-  // if (this.doc.readyState !== 'complete') {
-  //   addEventListener('load', this.setup);
-  //   return debug('doc not loaded');
-  // }
-
   this.setupScroller();
   this.isSetup = true;
-  this.select(this.pendingSelect || 0, { animate: false });
   setTimeout(this.enableTransitions.bind(this));
   this.classList.add('setup');
 
-  // Tidy up
-  // removeEventListener('load', this.setup);
   delete this.pendingSelect;
 };
 
@@ -222,12 +208,17 @@ proto.teardown = function() {
 
 proto.select = function(index, options) {
   debug('select: %s', index);
+  options = options || {};
+  this.setup();
+
   if (isNaN(index)) { return debug('invalid argument'); }
   if (!this.isSetup) {
     this.pendingSelect = index;
     debug('select queued: %s', index);
     return;
   }
+
+  if (!this.selected) options.animate = false;
 
   this.scroller.scrollToIndex(index, options);
 };

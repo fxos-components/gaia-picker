@@ -78,9 +78,9 @@
     </div>
   </ul> -->
 
-  <ul class="simple-list" id="recyclelist">
+<!--   <ul class="simple-list" id="recyclelist">
     <div class="simple-list_inner" id="recyclelistinner"></div>
-  </ul>
+  </ul> -->
 
   <!-- <gaia-picker circular style="height:300px"></gaia-picker> -->
 
@@ -106,7 +106,7 @@
   </gaia-picker-date> -->
 
   <gaia-picker-time format="12hr" style="height:200px"></gaia-picker-time>
-  <gaia-picker-time style="height:200px"></gaia-picker-time>
+  <!-- <gaia-picker-time style="height:200px"></gaia-picker-time> -->
 
   <script>
 
@@ -138,28 +138,28 @@
     'December'
   ];
 
-  var list = new Scroll({
-    outer: recyclelist,
-    inner: recyclelist.firstElementChild, // optional
-    length: 12,
-    // circular: true,
-    // snap: true,
-    heights: {
-      outer: 200,
-      item: 50
-    },
-    render: function(el, index, offsetIndex) {
-      var value = items[index];
+  // var list = new Scroll({
+  //   outer: recyclelist,
+  //   inner: recyclelist.firstElementChild, // optional
+  //   length: 12,
+  //   // circular: true,
+  //   // snap: true,
+  //   heights: {
+  //     outer: 200,
+  //     item: 50
+  //   },
+  //   render: function(el, index, offsetIndex) {
+  //     var value = items[index];
 
-      if (!value) el.style.opacity = 0;
-      else el.style.opacity = '';
+  //     if (!value) el.style.opacity = 0;
+  //     else el.style.opacity = '';
 
-      el.textContent = items[index];
-    }
-  });
+  //     el.textContent = items[index];
+  //   }
+  // });
 
-  list.heights.scroll += list.heights.outer - list.heights.item;
-  list.refresh();
+  // list.heights.scroll += list.heights.outer - list.heights.item;
+  // list.refresh();
 
   // var picker = document.querySelector('gaia-picker');
   // picker.items = items;
