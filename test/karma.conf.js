@@ -1,14 +1,18 @@
 
 module.exports = function(config) {
   config.set({
-    frameworks: ['mocha', 'sinon-chai'],
-    browsers: ['firefox_latest'],
-    client: { mocha: { 'ui': 'tdd' } },
     basePath: '../',
+    frameworks: [
+      'mocha',
+      'sinon-chai'
+    ],
+
+    browsers: ['firefox_custom'],
+    client: { mocha: { 'ui': 'tdd' } },
 
     customLaunchers: {
-      firefox_latest: {
-        base: 'FirefoxNightly',
+      firefox_custom: {
+        base: 'Firefox',
         prefs: {
           'dom.webcomponents.enabled': true,
           'dom.w3c_touch_events.enabled': 1
